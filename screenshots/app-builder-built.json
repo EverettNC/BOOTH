@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Booth",
+      "hasCanvas": false,
+      "bodyTextLen": 1574,
+      "bodyTextHash": "ecf667bee04ff2a779eca5816abdf00aca67b4a71b810f5b7bbacb0fa4f3ab95",
+      "bodyTextPrefix": "Booth On-device text to speech Never uploaded Speech stays on th",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Booth",
+      "hasCanvas": false,
+      "bodyTextLen": 1565,
+      "bodyTextHash": "b35471f385d5681d6778e5e3f7a2861901c798bec4f1ab226927dc4ab386722d",
+      "bodyTextPrefix": "Booth On-device text to speech Local Speech stays on this device",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}
