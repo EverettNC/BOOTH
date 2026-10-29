@@ -102,7 +102,7 @@ export const SCRIPT_SAMPLES: { id: string; label: string; text: string }[] = [
   {
     id: "lecture",
     label: "Lecture",
-    text: "Text-to-speech does not have to leave the room. A small on-device model turns writing into sound on the same computer that holds the file. No account. No upload. The only network trip is the first download of the voice engine, which stays cached after that.",
+    text: "Text-to-speech does not have to leave the room. A small on-device model turns writing into sound on the same computer that holds the file. No account. No upload. Everything runs locally in memory with zero network trips and zero model downloads.",
   },
   {
     id: "ad",

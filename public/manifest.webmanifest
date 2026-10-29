@@ -1,0 +1,23 @@
+{
+  "name": "Booth — On-Device Text to Speech",
+  "short_name": "Booth",
+  "description": "Speak any script with a local neural voice. Runs entirely in your browser on WebGPU or WASM — no cloud, no uploads, no account.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0e0d0c",
+  "theme_color": "#0e0d0c",
+  "icons": [
+    {
+      "src": "/icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

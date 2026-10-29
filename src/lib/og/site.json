@@ -1,4 +1,7 @@
 {
   "title": "Booth",
-  "card": "custom"
+  "card": "custom",
+  "shortName": "Booth",
+  "themeColor": "#0e0d0c",
+  "imagePath": "/og.jpg"
 }
