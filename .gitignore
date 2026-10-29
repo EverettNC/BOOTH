@@ -1,5 +1,12 @@
-node_modules/
-.project_id
-.github_repo
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
 .env
-.env.*
+.nitro
+.tanstack
+.wrangler
+.output
+.vinxi
+.vercel

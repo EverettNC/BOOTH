@@ -55,7 +55,7 @@ function Plaque() {
   return (
     <img
       src="/plaque.jpg"
-      alt="Booth commemorative plaque. Built together as a family ship: Everett Vision Grok Foundation, The Christman AI Project, and Grok."
+      alt="Booth commemorative plaque. Built together as a family ship: Everett Vision Foundation and The Christman AI Project."
       width={3584}
       height={2016}
       className="plaque"
@@ -126,6 +126,10 @@ export function Studio() {
   const [clips, setClips] = useState<StoredClip[]>([]);
   const [dragOver, setDragOver] = useState(false);
 
+  const scriptRef = useRef(script);
+  const voiceRef = useRef<VoiceId>(voiceId);
+  const sampleRateRef = useRef(sampleRate);
+
   const voice = VOICES.find((item) => item.id === voiceId) ?? VOICES[0]!;
   const peaks = useMemo(() => downsamplePeaks(samples ?? new Float32Array(), 72), [samples]);
   const playhead = duration > 0 ? currentTime / duration : 0;
@@ -170,6 +174,7 @@ export function Studio() {
     const when = playback.startedAt + playback.cursor / rate;
     source.start(Math.max(when, playback.ctx.currentTime));
     playback.sources.push(source);
+    // eslint-disable-next-line react-hooks/immutability -- playback is the Web Audio scheduler held in a ref, not React state; its cursor advances per chunk
     playback.cursor += chunk.length;
     setDuration(playback.cursor / rate);
   }, []);
@@ -179,6 +184,7 @@ export function Studio() {
     const savedScript = window.localStorage.getItem("booth-script");
     const savedSpeed = window.localStorage.getItem("booth-speed");
     if (savedVoice && VOICES.some((item) => item.id === savedVoice)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- browser storage is only readable after mount; the page is server-rendered first
       setVoiceId(savedVoice as VoiceId);
     }
     if (savedScript) setScript(savedScript.slice(0, MAX_CHARS));
@@ -249,12 +255,11 @@ export function Studio() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const scriptRef = useRef(script);
-  const voiceRef = useRef(voiceId);
-  const sampleRateRef = useRef(sampleRate);
-  scriptRef.current = script;
-  voiceRef.current = voiceId;
-  sampleRateRef.current = sampleRate;
+  useEffect(() => {
+    scriptRef.current = script;
+    voiceRef.current = voiceId;
+    sampleRateRef.current = sampleRate;
+  }, [script, voiceId, sampleRate]);
 
   useEffect(() => {
     window.localStorage.setItem("booth-voice", voiceId);
@@ -377,8 +382,8 @@ export function Studio() {
           <div>
             <p className="font-display text-lg tracking-[-0.03em]">Speech stays on this device</p>
             <p className="mt-1 max-w-xl text-sm leading-normal text-muted">
-              No cloud, no transcription, no OCR. The voice engine downloads once, then your
-              script is synthesized here. Bring text from your own tools and press speak.
+              No cloud, no transcription, no downloads. Your script is synthesized locally
+              in memory on this machine. Bring text from your own tools and press speak.
             </p>
           </div>
           <div className="flex items-center gap-3 text-sm text-muted">
@@ -400,7 +405,7 @@ export function Studio() {
             </div>
             {status === "error" && (
               <Button className="mt-3" variant="secondary" onClick={() => engineRef.current?.load()}>
-                Retry local download
+                Retry local engine
               </Button>
             )}
           </div>
